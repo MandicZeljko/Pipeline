@@ -1,0 +1,51 @@
+pipeline{
+    agent any
+
+    parameters{
+        string(name : 'SPEC', defaultValue: 'cypress/e2e/**',description : 'test cases')
+        choise(name: 'BROWSER', choise :'chrome, edge, firefox', description: 'browser options')
+    }
+    options{
+        ansiColor('xterm')
+    }
+    stages{
+        stage('Develop'){
+            step{
+                echo 'Development stage'
+            }
+        }
+        stage('Test'){
+            parallel{
+                step{
+                    bat 'npm i'
+                    bat 'npx cypress run --browser chrome spec ${SPEC}'
+                }
+                step{
+                    bat 'npm i'
+                    bat 'npx cypress run --browser edge spec ${SPEC}'
+                }
+                step{
+                    bat 'npm i'
+                    bat 'npx cypress run --browser firefox spec ${SPEC}'
+                }
+            }
+        }
+        stage('Deploy'){
+            step{
+                echo 'Deploy stage'
+            }
+        }
+       
+    }
+     post{
+        publishHTML ([allowMissing: false,
+            alwaysLinkToLastBuild:false,
+            keepAll: true,
+            reportDir: 'reports',
+            reportFiles: 'myreport.html',
+            reportName: 'My Reports',
+            reportTitles: 'The Report'])
+            
+        }
+    
+}
