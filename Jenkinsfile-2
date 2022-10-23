@@ -16,6 +16,7 @@ pipeline{
         }
         stage('Test'){
             parallel{
+                steps{
                 step{
                     bat 'npm i'
                     bat 'npx cypress run --browser chrome spec ${SPEC}'
@@ -27,6 +28,7 @@ pipeline{
                 step{
                     bat 'npm i'
                     bat 'npx cypress run --browser firefox spec ${SPEC}'
+                }
                 }
             }
         }
