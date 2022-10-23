@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    options{
+        ansiColor('xterm')
+    }
     stages {
         stage('Multiple browsers') {
             parallel {
@@ -24,4 +27,13 @@ pipeline {
             }
         }
     }
+    post{
+        publishHTML ([allowMissing: false,
+        alwaysLinkToLastBuild:false,
+        keepAll: true,
+        reportDir: 'reports',
+        reportFiles: 'myreport.html',
+        reportName: 'My Reports',
+        reportTitles: 'The Report'])
+ }
 }
