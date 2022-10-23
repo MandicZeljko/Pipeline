@@ -17,27 +17,45 @@ pipeline{
               
             }
         }
-        stage('Test'){
+    stages{
+         stage('Test'){
             
                 parallel{
-                    steps{
-                        step{
-                            bat 'npm i'
-                            bat 'npx cypress run --browser chrome spec ${SPEC}'
+                    stage('chrome'){
+                        
+                        steps{
+                           step{
+                             bat 'npm i'
+                                bat 'npx cypress run --browser chrome spec ${SPEC}'
+                           }
                         }
+                    }
+
+                    stage('edge'){
+                        steps{
                             step{
                                 bat 'npm i'
                                 bat 'npx cypress run --browser edge spec ${SPEC}'
-                        }
-                            step{
-                                bat 'npm i'
-                                bat 'npx cypress run --browser firefox spec ${SPEC}'
-                
 
-            }
+                                }
+                            }
+                        }
+                        stage('firefox'){
+                            staps{
+                                step{
+                                    bat 'npm i'
+                                bat 'npx cypress run --browser firefox spec ${SPEC}'
+
+                                }
+                            }
+                        }
+                    }
             
                 }
             }
+
+      }  
+       
         }
         stage('Deploy'){
             steps{
@@ -49,7 +67,7 @@ pipeline{
             }
         }
        
-    }
+    
      post{
         publishHTML ([allowMissing: false,
             alwaysLinkToLastBuild:false,
@@ -60,5 +78,5 @@ pipeline{
             reportTitles: 'The Report'])
             
         }
-    
+    }
 }
