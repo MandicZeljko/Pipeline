@@ -18,7 +18,7 @@ pipeline{
             }
         }
         stage('Test'){
-            stage('run onmultiple browsers'){
+            
                 parallel{
                     steps{
                         step{
@@ -32,7 +32,7 @@ pipeline{
                             step{
                                 bat 'npm i'
                                 bat 'npx cypress run --browser firefox spec ${SPEC}'
-                }
+                
 
             }
             
