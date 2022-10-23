@@ -1,33 +1,18 @@
-pipeline{
+pipeline {
     agent any
-    options{
-        ansiColor('xterm')
-    }
-    stages{
-        stage('Develop')
-            
-                 echo 'Development stage'
-        
-        stage('Test'){
-            
-                 echo 'Test stage'
-            
-            
-        }
-        stage('Deploy'){
-            steps{
-                echo 'Deploy stage'
+    stages {
+        stage('Multiple browsers') {
+            parallel {
+                stage('Edge') {
+                     bat 'npx cypress run --browser edge -- spec cypress/e2e/google.js'
+                }
+                stage('Firefox') {
+                      bat 'npx cypress run --browser firefox -- spec cypress/e2e/google.js'
+                }
+                stage('chrome') {
+                      bat 'npx cypress run --browser chrome -- spec cypress/e2e/google.js'
+                }
             }
         }
     }
-    post{
-        publishHTML ([allowMissing: false,
-        alwaysLinkToLastBuild:false,
-        keepAll: true,
-        reportDir: 'reports',
-        reportFiles: 'myreport.html',
-        reportName: 'My Reports',
-        reportTitles: 'The Report'])
- }
-        
 }
