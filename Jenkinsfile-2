@@ -9,7 +9,7 @@ pipeline {
                 
                 stage('Firefox') {
                     steps{
-                         bat 'npx cypress run --browser firefox -- spec cypress/e2e/google..cy.js'
+                         bat 'npx cypress run --browser firefox -- spec cypress/e2e/google.cy.js'
                     }
                      
                 }
