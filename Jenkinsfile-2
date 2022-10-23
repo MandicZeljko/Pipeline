@@ -18,20 +18,24 @@ pipeline{
             }
         }
         stage('Test'){
-            parallel{
-                steps{
-                    step{
-                        bat 'npm i'
-                        bat 'npx cypress run --browser chrome spec ${SPEC}'
-                     }
+            stage('run onmultiple browsers'){
+                parallel{
+                    steps{
                         step{
                             bat 'npm i'
-                            bat 'npx cypress run --browser edge spec ${SPEC}'
-                    }
-                        step{
-                            bat 'npm i'
-                            bat 'npx cypress run --browser firefox spec ${SPEC}'
+                            bat 'npx cypress run --browser chrome spec ${SPEC}'
+                        }
+                            step{
+                                bat 'npm i'
+                                bat 'npx cypress run --browser edge spec ${SPEC}'
+                        }
+                            step{
+                                bat 'npm i'
+                                bat 'npx cypress run --browser firefox spec ${SPEC}'
                 }
+
+            }
+            
                 }
             }
         }
