@@ -4,7 +4,7 @@ pipeline {
         ansiColor('xterm')
     }
     stages {
-        stage('Multiple browsers') {
+        stage('google') {
             parallel {
                 
                 stage('Firefox') {
@@ -20,6 +20,9 @@ pipeline {
                       
                 }
             }
+
+        }
+        stage('yahoo'){
             parallel {
                 
                 stage('Firefox') {
