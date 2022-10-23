@@ -22,5 +22,17 @@ pipeline {
             }
         }
     }
+
+    post {
+        always{
+            publishHTML ([allowMissing: false,
+        alwaysLinkToLastBuild:false,
+        keepAll: true,
+        reportDir: 'reports',
+        reportFiles: 'myreport.html',
+        reportName: 'My Reports',
+        reportTitles: 'The Report'])
+        }
+    }
     
 }
