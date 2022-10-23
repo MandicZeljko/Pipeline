@@ -1,85 +1,53 @@
 pipeline{
     agent any
-
     parameters{
         string(name : 'SPEC', defaultValue: 'cypress/e2e/**',description : 'test cases')
-        choise(name: 'BROWSER', choise :'chrome, edge, firefox', description: 'browser options')
+        choice(name: 'BROWSER', choice :'chrome, edge, firefox', description: 'browser options')
+
     }
+
     options{
         ansiColor('xterm')
     }
     stages{
-        stage('Develop'){
+        stage('Develop')
             steps{
-                step{
-                    echo 'Development stage'
-                }
-              
-            }
+                 echo 'Development stage'
         }
-    stages{
-         stage('Test'){
-            
-                parallel{
-                    stage('chrome'){
-                        
-                        steps{
-                           step{
-                             bat 'npm i'
-                                bat 'npx cypress run --browser chrome spec ${SPEC}'
-                           }
-                        }
-                    }
+        stage('Test'){
+            parallel{
+                "chrome" :{
+                    bat 'npm i'
+                    bat 'npx cypress run --browser edge spec sypress/e2e/google.cy.js'
 
-                    stage('edge'){
-                        steps{
-                            step{
-                                bat 'npm i'
-                                bat 'npx cypress run --browser edge spec ${SPEC}'
+                },
+                "edge": {
+                    bat 'npm i'
+                    bat 'npx cypress run --browser edge spec sypress/e2e/google.cy.js'
 
-                                }
-                            }
-                        }
-                        stage('firefox'){
-                            staps{
-                                step{
-                                    bat 'npm i'
-                                bat 'npx cypress run --browser firefox spec ${SPEC}'
-
-                                }
-                            }
-                        }
-                    }
-            
                 }
-            }
+                "firefox": {
+                    bat 'npm i'
+                    bat 'npx cypress run --browser firefox spec sypress/e2e/google.cy.js'
+                }
 
-      }  
-       
+            }
+            
         }
         stage('Deploy'){
             steps{
-                step{
-                       echo 'Deploy stage'
-
-                }
-             
+                echo 'Deploy stage'
             }
         }
-       
-    
-       
+    }
+    post{
+        publishHTML ([allowMissing: false,
+        alwaysLinkToLastBuild:false,
+        keepAll: true,
+        reportDir: 'reports',
+        reportFiles: 'myreport.html',
+        reportName: 'My Reports',
+        reportTitles: 'The Report'])
+ }
         
-    
-     post{
-            publishHTML ([allowMissing: false,
-                alwaysLinkToLastBuild:false,
-                keepAll: true,
-                reportDir: 'reports',
-                reportFiles: 'myreport.html',
-                reportName: 'My Reports',
-                reportTitles: 'The Report'])
- 
-            }
-            
-
+}
