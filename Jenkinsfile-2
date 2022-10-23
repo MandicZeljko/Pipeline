@@ -28,12 +28,12 @@ pipeline {
         }
     }
     post{
-        publishHTML ([allowMissing: false,
-        alwaysLinkToLastBuild:false,
-        keepAll: true,
-        reportDir: 'reports',
-        reportFiles: 'myreport.html',
-        reportName: 'My Reports',
-        reportTitles: 'The Report'])
- }
+        publishHTML target: [
+            allowMissing: false,
+            alwaysLinkToLastBuild: false,
+            keepAll: true,
+            reportDir: 'coverage',
+            reportFiles: 'index.html',
+            reportName: 'RCov Report'
+          ]
 }
