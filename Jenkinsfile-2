@@ -70,7 +70,7 @@ pipeline{
     
        
         
-    }
+    
      post{
             publishHTML ([allowMissing: false,
                 alwaysLinkToLastBuild:false,
@@ -79,5 +79,7 @@ pipeline{
                 reportFiles: 'myreport.html',
                 reportName: 'My Reports',
                 reportTitles: 'The Report'])
+ 
             }
+            
 }
