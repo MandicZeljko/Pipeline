@@ -36,4 +36,5 @@ pipeline {
             reportFiles: 'index.html',
             reportName: 'RCov Report'
           ]
+    }
 }
