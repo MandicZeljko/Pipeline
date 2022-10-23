@@ -20,7 +20,7 @@ pipeline{
                     bat 'npm i'
                     bat 'npx cypress run --browser edge spec sypress/e2e/google.cy.js'
 
-                },
+                }
                 "edge" {
                     bat 'npm i'
                     bat 'npx cypress run --browser edge spec sypress/e2e/google.cy.js'
