@@ -1,36 +1,16 @@
 pipeline{
     agent any
-    parameters{
-        string(name : 'SPEC', defaultValue: 'cypress/e2e/**',description : 'test cases')
-        choice(name: 'BROWSER', choice :'chrome, edge, firefox', description: 'browser options')
-
-    }
-
     options{
         ansiColor('xterm')
     }
     stages{
-        stage('Develop')
+        stages('Develop')
             steps{
                  echo 'Development stage'
         }
         stage('Test'){
-            parallel{
-                "chrome" {
-                    bat 'npm i'
-                    bat 'npx cypress run --browser edge spec sypress/e2e/google.cy.js'
-
-                }
-                "edge" {
-                    bat 'npm i'
-                    bat 'npx cypress run --browser edge spec sypress/e2e/google.cy.js'
-
-                }
-                "firefox" {
-                    bat 'npm i'
-                    bat 'npx cypress run --browser firefox spec sypress/e2e/google.cy.js'
-                }
-
+            steps{
+                 echo 'Test stage'
             }
             
         }
