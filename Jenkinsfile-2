@@ -20,6 +20,21 @@ pipeline {
                       
                 }
             }
+            parallel {
+                
+                stage('Firefox') {
+                    steps{
+                         bat 'npx cypress run --browser firefox -- spec cypress/e2e/yahoo.cy.js'
+                    }
+                     
+                }
+                stage('chrome') {
+                    steps{
+                        bat 'npx cypress run --browser chrome -- spec cypress/e2e/yahoo.cy.js'
+                    }
+                      
+                }
+            }
         }
     }
 
