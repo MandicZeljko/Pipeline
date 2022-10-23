@@ -16,17 +16,17 @@ pipeline{
         }
         stage('Test'){
             parallel{
-                "chrome" :{
+                "chrome" {
                     bat 'npm i'
                     bat 'npx cypress run --browser edge spec sypress/e2e/google.cy.js'
 
                 },
-                "edge": {
+                "edge" {
                     bat 'npm i'
                     bat 'npx cypress run --browser edge spec sypress/e2e/google.cy.js'
 
                 }
-                "firefox": {
+                "firefox" {
                     bat 'npm i'
                     bat 'npx cypress run --browser firefox spec sypress/e2e/google.cy.js'
                 }
