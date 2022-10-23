@@ -5,13 +5,13 @@ pipeline{
     }
     stages{
         stage('Develop')
-            steps{
+            
                  echo 'Development stage'
-        }
+        
         stage('Test'){
-            steps{
+            
                  echo 'Test stage'
-            }
+            
             
         }
         stage('Deploy'){
