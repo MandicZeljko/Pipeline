@@ -6,21 +6,16 @@ pipeline {
     stages {
         stage('Multiple browsers') {
             parallel {
-                stage('Edge') {
-                    steps{
-                        bat 'npx cypress run --browser edge -- spec cypress/e2e/google.js'
-                    }
-                     
-                }
+                
                 stage('Firefox') {
                     steps{
-                         bat 'npx cypress run --browser firefox -- spec cypress/e2e/google.js'
+                         bat 'npx cypress run --browser firefox -- spec cypress/e2e/google..cy.js'
                     }
                      
                 }
                 stage('chrome') {
                     steps{
-                        bat 'npx cypress run --browser chrome -- spec cypress/e2e/google.js'
+                        bat 'npx cypress run --browser chrome -- spec cypress/e2e/google.cy.js'
                     }
                       
                 }
