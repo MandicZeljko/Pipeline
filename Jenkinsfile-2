@@ -44,20 +44,8 @@ pipeline {
 
     post {
         always{
-           // publishHTML ([allowMissing: false,
-        //alwaysLinkToLastBuild:false,
-       // keepAll: true,
-        //reportDir: 'reports',
-        //reportFiles: 'myreport.html',
-        //reportName: 'My_Reports',
-       // reportTitles: 'The Report'])
-        publishHTML([allowMissing: false,
-         alwaysLinkToLastBuild: false, 
-         keepAll: true, 
-         reportDir: "HTML Report Directory", 
-         reportFiles: 'html-file_name', 
-         reportName: 'HTML Report', 
-         reportTitles: ''])
+       archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
+            junit 'build/reports/**/*.xml'
         }
     }
     
