@@ -2,7 +2,7 @@ pipeline {
     agent any
     options{
         ansiColor('xterm')
-        Video:false
+        
     }
     stages {
         stage('google') {
