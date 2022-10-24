@@ -10,13 +10,13 @@ pipeline {
                 
                 stage('Firefox') {
                     steps{
-                         bat 'npx cypress run --browser firefox -- spec cypress/e2e/google.cy.js'
+                         bat 'npx cypress run --browser firefox -- --config videoRecording=false --spec cypress/e2e/google.cy.js'
                     }
                      
                 }
                 stage('chrome') {
                     steps{
-                        bat 'npx cypress run --browser chrome -- spec cypress/e2e/google.cy.js'
+                        bat 'npx cypress run --browser chrome  --config videoRecording=false -- spec cypress/e2e/google.cy.js'
                     }
                       
                 }
@@ -28,7 +28,7 @@ pipeline {
                 
                 stage('Firefox') {
                     steps{
-                         bat 'npx cypress run --browser firefox -- --config videoRecording=false --spec cypress/e2e/yahoo.cy.js'
+                         bat 'npx cypress run --browser firefox  --config videoRecording=false --spec cypress/e2e/yahoo.cy.js'
                     }
                      
                 }
