@@ -40,7 +40,10 @@ pipeline {
                 }
             }
         }
-        stage('just google'){
+
+    }
+    stages{
+                stage('just google'){
             staps{
                  bat 'npx cypress run --browser firefox  --config videoRecording=false --spec cypress/e2e/google.cy.js'
 
@@ -52,5 +55,6 @@ pipeline {
 
             }
         }
+
     }
 }
