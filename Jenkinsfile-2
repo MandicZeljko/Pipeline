@@ -45,7 +45,7 @@ pipeline {
     post {
         always{
          mocha({
-            reporter: mocha-jenkins-reporter })
+            reporter: 'mocha-jenkins-reporter' })
         }
     }
     
