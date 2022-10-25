@@ -44,7 +44,14 @@ pipeline {
 
     post {
         always{
-         realtimeJUnit('C:/JunitReports/*.xml')
+         mocha({
+            "reporter": "mocha-jenkins-reporter",
+            "reporterOptions": {
+                "junit_report_name": "Tests",
+                "junit_report_path": "report.xml",
+                "junit_report_stack": 1
+            }
+        })
         }
     }
     
