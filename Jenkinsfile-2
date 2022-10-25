@@ -41,12 +41,12 @@ pipeline {
             }
         }
     }
-    stage('google'){
+    stage('just google'){
         steps{
             bat 'npx cypress run --browser firefox  --config videoRecording=false --spec cypress/e2e/google.cy.js'
         }
     }
-    stage('yahoo')
+    stage('just yahoo')
     steps{
         bat 'npx cypress run --browser firefox  --config videoRecording=false --spec cypress/e2e/yahoo.cy.js'
     }
