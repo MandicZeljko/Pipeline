@@ -44,7 +44,7 @@ pipeline {
 
     post {
         always{
-         realtimeJUnit('C:\JunitReports/*.xml')
+         realtimeJUnit('C:/JunitReports/*.xml')
         }
     }
     
